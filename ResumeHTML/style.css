@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+body{
+	background-color: LightSteelBlue;
+	font-family: 'Montserrat', sans-serif;
+}
+
+img#avatar{
+	border-radius: 50%;
+	width: 150px;
+}
+
+p#biodata{
+	font-size: 18px;
+}
+
+nav{
+	background-color: DarkSlateBlue;
+	padding: 5px;
+}
+
+nav a {
+	font-size: 18px;
+	font-weight: 400;
+	color: white;
+	padding: 16px;
+	text-decoration: none;
+}
+
+nav a:hover{
+	font-weight: bold;
+	background-color: LightSlateGray;
+}
+
+nav li{
+	list-style-type: none;
+	display: inline;
+}
+
+ul{
+	padding-inline-start: 0px;
+}
+
+.table-header{
+	text-align: left;
+}
