@@ -1,0 +1,43 @@
+body{
+	width: 100%;
+	background-color: Azure;
+	font-family: verdana;
+}
+
+img{
+	width: 225px;
+}
+
+table{
+	width: 50%;
+	border: 5px solid aquamarine;
+	border-collapse: collapse;
+	margin-top: 20px;
+	position: relative;
+	text-align:center;
+}
+
+tr, th, td{
+	border: 1px solid aqua;
+	width:50px;
+}
+
+caption{
+	background-color: aqua;	
+	text-align: center;
+	font-size: 20px;
+}
+
+figure{
+	text-align: right;
+	float: right;
+}
+
+.tahun{
+	width: 25%;
+}
+
+.header{
+	padding-top: 20px;
+	background-color: aquamarine;
+}
