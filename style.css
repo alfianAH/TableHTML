@@ -8,3 +8,11 @@ body{
 ul{
 	padding-inline-start: 20px;
 }
+
+nav a{
+	text-decoration: none;
+}
+
+nav a:hover{
+	font-weight: bold;
+}
