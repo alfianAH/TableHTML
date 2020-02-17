@@ -7,8 +7,11 @@ body{
 
 img#avatar{
 	width: 225px;
-	float: right;
 	padding-right: 25px;
+}
+
+img#social{
+	width: 35px;
 }
 
 p#biodata{
@@ -40,6 +43,10 @@ nav li{
 
 ul{
 	padding-inline-start: 0px;
+}
+
+#foto{
+	float: right;
 }
 
 .table-header{
