@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+body{
+	background-color: Snow;
+	font-family: 'Montserrat', sans-serif;
+}
+
+ul{
+	padding-inline-start: 20px;
+}
