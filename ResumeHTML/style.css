@@ -37,6 +37,10 @@ nav li{
 	display: inline;
 }
 
+table{
+	width: 55%;
+}
+
 ul{
 	padding-inline-start: 0px;
 }
@@ -52,4 +56,8 @@ ul{
 
 .table-header{
 	text-align: left;
+}
+
+.tahun{
+	width: 25%
 }
