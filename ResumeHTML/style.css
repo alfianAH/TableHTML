@@ -53,6 +53,16 @@ ul#keterampilan{
 	float: right;
 }
 
+table#pendidikan, table#pelatihan{
+	border: 5px solid black;
+	border-collapse: collapse;
+	position: relative;
+}
+
+tr#pendidikan, tr#pelatihan{
+	border: 1px solid black;
+}
+
 #social{
 	text-align: center;
 }
@@ -64,6 +74,7 @@ ul#keterampilan{
 
 .sekolah, .nama_pelatihan{
 	text-align: center;
+	border: 1px solid black;
 }
 
 .table-header{
@@ -72,4 +83,5 @@ ul#keterampilan{
 
 .tahun{
 	width: 20%;
+	border: 1px solid black;
 }
