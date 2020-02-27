@@ -1,20 +1,13 @@
+// getBanyakData: untuk mengambil berapa banyak angka yang ingin dimasukkan user
 function getBanyakData(){
 	var number = 0;
+
 	number = document.forms["inputNilai"]["banyakData"].value;
 	number = parseInt(number);
-
 	return number;
 }
 
-function printNilai(){
-	var banyakData = getBanyakData();
-
-	for(var i=0; i<banyakData; i++){
-		document.getElementById('printData').innerHTML = "<p>Nilai " + (i+1) ": <input type=\"text\" name=\"value1\"/></p>";
-		document.getElementById('printData').innerHTML = "";
-	}
-}
-
+// getNumber: untuk mendapatkan angka yang diinput user
 function getNumber(){
 	var number = [];
 	var banyakData = getBanyakData();
@@ -24,6 +17,16 @@ function getNumber(){
 		number[i] = parseInt(number[i]);
 	}
 	return number;
+}
+
+
+// printData: untuk menambahkan kode HTML sebanyak banyakData
+function printData(){
+	var banyakData = getBanyakData();
+	document.getElementById('printData').innerHTML = "";
+	for(var i=0; i<banyakData; i++){
+		document.getElementById('printData').innerHTML += "<p>Nilai " + (i+1) + ": <input type=\"text\" name=\"value" + (i+1) + "\"/></p>";
+	}
 }
 
 // function average: menghitung nilai rata-rata
