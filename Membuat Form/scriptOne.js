@@ -94,6 +94,7 @@ function hasil(){
 
 // function reset: mereset array
 function resetValue(){
+	document.getElementById('printData').innerHTML = "";
 	document.getElementById('average').innerHTML = "";
 	document.getElementById('median').innerHTML = "";
 	document.getElementById('maxValue').innerHTML = "";
