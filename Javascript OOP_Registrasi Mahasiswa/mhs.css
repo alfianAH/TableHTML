@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+table{
+    position: relative;
+}
+
+th{
+    text-align: right;
+}
+
+#hasil th{
+    text-align: center;
+    background-color: yellow;
+}
+
+#hasil th, #hasil td{
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+#hasil td{
+    text-align: left;
+}
+
+/* #listMhs{
+    display: none;
+} */

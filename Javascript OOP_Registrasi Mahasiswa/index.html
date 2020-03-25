@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <title>Registrasi Mahasiswa</title>
+        <link rel="stylesheet" href="mhs.css">
+        <script src="mhs.js"></script>
+    </head>
+
+    <body>
+        <h2>Registrasi Mahasiswa</h2>
+        <table id="registrasi">
+            <form name="registrasiMhs"></form>
+                <tr>
+                    <th>Nama:</th>
+                    <td><input type="text" name="nama"/></td>
+                </tr>
+                
+                <tr>
+                    <th>NIM:</th>
+                    <td><input type="text" name="nim"/></td>
+                </tr>
+                
+                <tr>
+                    <th>Prodi:</th>
+                    <td><input type="text" name="prodi"/></td>
+                </tr>
+                
+                <tr>
+                    <th>Email:</th>
+                    <td><input type="email" name="email"/></td>
+                </tr>
+            </form>
+        </table>
+        <p>
+        <input type="button" value="Daftar" onclick=""/>
+        </p>
+        
+        <div id="listMhs">
+            <h2>List Mahasiswa Terdaftar</h2>
+            <table id="hasil">
+                <tr>
+                    <th class="nama">Nama</th>
+                    <th class="nim">NIM</th>
+                    <th class="prodi">Prodi</th>
+                    <th class="email">Email</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
