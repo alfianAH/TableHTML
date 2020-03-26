@@ -12,6 +12,18 @@ th{
     text-align: right;
 }
 
+#listMhs{
+    /* display: none; */
+    padding: 5px 15px 5px 15px;
+    margin: 5px;
+}
+
+#registrasi{
+    background-color: lightgray;
+    padding: 5px 15px 5px 15px;
+    margin: 5px;
+}
+
 #hasil th{
     text-align: center;
     background-color: yellow;
@@ -26,6 +38,3 @@ th{
     text-align: left;
 }
 
-/* #listMhs{
-    display: none;
-} */
