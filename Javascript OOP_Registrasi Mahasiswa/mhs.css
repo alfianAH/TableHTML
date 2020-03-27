@@ -32,9 +32,13 @@ th{
 #hasil th, #hasil td{
     border: 1px solid;
     border-collapse: collapse;
+    padding: 5px 5px 5px 5px;
 }
 
 #hasil td{
     text-align: left;
 }
 
+#hasil .hapus{
+    border-style: none;
+}

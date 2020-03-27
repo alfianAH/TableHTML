@@ -34,7 +34,7 @@
             </form>
         </table>
 
-        <p><input type="button" value="Daftar" onclick="setData()"/></p>
+        <p><input type="button" value="Daftar" onclick="setData()" onsubmit="return validateForm()"/></p>
     </div>
     
     <div id="listMhs">
@@ -45,6 +45,14 @@
                 <th class="nim">NIM</th>
                 <th class="prodi">Prodi</th>
                 <th class="email">Email</th>
+            </tr>
+
+            <tr>
+                <td class="nama">Nama</td>
+                <td class="nim">NIM</td>
+                <td class="prodi">Prodi</td>
+                <td class="email">Email</td>
+                <td class="hapus"><input type="button" value="Hapus" onclick="hapusData()"/></td>
             </tr>
         </table>
     </div>
