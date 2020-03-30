@@ -24,21 +24,21 @@ th{
     margin: 5px;
 }
 
-#hasil th{
+#hasilTabel th{
     text-align: center;
     background-color: yellow;
 }
 
-#hasil th, #hasil td{
+#hasilTabel th, #hasilTabel td{
     border: 1px solid;
     border-collapse: collapse;
     padding: 5px 5px 5px 5px;
 }
 
-#hasil td{
+#hasilTabel td{
     text-align: left;
 }
 
-#hasil .hapus{
+#hasilTabel .hapus{
     border-style: none;
 }

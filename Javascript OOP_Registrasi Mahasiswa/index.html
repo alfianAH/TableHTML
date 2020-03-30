@@ -34,27 +34,21 @@
             </form>
         </table>
 
-        <p><input type="button" value="Daftar" onclick="setData()" onsubmit="return validateForm()"/></p>
+        <p><input type="button" value="Daftar" onclick="setData(), addData()" onsubmit="return validateForm()"/></p>
     </div>
     
     <div id="listMhs">
         <h2>List Mahasiswa Terdaftar</h2>
-        <table id="hasil">
+        <table id="hasilTabel">
             <tr>
                 <th class="nama">Nama</th>
                 <th class="nim">NIM</th>
                 <th class="prodi">Prodi</th>
                 <th class="email">Email</th>
             </tr>
-
-            <tr>
-                <td class="nama">Nama</td>
-                <td class="nim">NIM</td>
-                <td class="prodi">Prodi</td>
-                <td class="email">Email</td>
-                <td class="hapus"><input type="button" value="Hapus" onclick="hapusData()"/></td>
-            </tr>
         </table>
+        <div id="hasil"></div>
+
     </div>
 </body>
 </html>
