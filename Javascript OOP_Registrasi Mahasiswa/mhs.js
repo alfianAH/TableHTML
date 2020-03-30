@@ -54,7 +54,7 @@ function setData(){
 
     if(validateForm(nama, nim, prodi, email)){
         var data = new Data(nama, nim, prodi, email);
-        dataMahasiswa.push({nama: nama, nim: nim, prodi: prodi, email: email, timestamp: new Date().getTime()});
+        dataMahasiswa.push({nama: nama, nim: nim, prodi: prodi, email: email});
         console.log(dataMahasiswa);
         addData();
     }
@@ -105,14 +105,15 @@ function hapusData(index){
     db = request.result;
     transaction = db.transaction("dataMahasiswa", "readwrite");
     store = transaction.objectStore("dataMahasiswa");
+    // console.log(store);
     // var delDb;
     var dbMahasiswa = store.getAll();
-    
-    dbMahasiswa.onsuccess = function(){
+    // console.log(dbMahasiswa);
+
+    dbMahasiswa.onsuccess = function(event){
         delDb = store.delete(dbMahasiswa.result[index].nim);
         alert(dbMahasiswa.result[index].nim + " sudah dihapus");
-        console.log(dbMahasiswa.result[index].nim + " sudah dihapus");
-        console.log(dbMahasiswa.result);
+        location.reload();
         header();
         for(var i=0; i<dbMahasiswa.result.length; i++){
             tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
@@ -184,4 +185,8 @@ function validateForm(nama, nim, prodi, email){
     } else{
         return true;
     }
+}
+
+function init(){
+    
 }
