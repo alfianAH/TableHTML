@@ -69,7 +69,7 @@ function addData() {
         
     request.onupgradeneeded = function(event){
         var db = request.result,
-            store = db.createObjectStore("dataMahasiswa", {keyPath: "nim"}),
+            store = db.createObjectStore("dataMahasiswa"),
             index = store.createIndex("nama", "nama", {unique: false});
     };
 
@@ -88,10 +88,11 @@ function addData() {
             console.log("ERROR: " + event.target.errorCode);
         };
 
-        // store.put(dataMahaysiswa[dataMahasiswa.length - 1]);
+        store.put(dataMahasiswa[dataMahasiswa.length - 1]);
         var dbMahasiswa = store.getAll();
         
         dbMahasiswa.onsuccess = function(){
+            header();
             console.log(dbMahasiswa.result);
             for(var i=0; i<dbMahasiswa.result.length; i++){
                 tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
@@ -106,53 +107,44 @@ function hapusData(index){
     store = transaction.objectStore("dataMahasiswa");
     // var delDb;
     var dbMahasiswa = store.getAll();
-
+    
     dbMahasiswa.onsuccess = function(){
         delDb = store.delete(dbMahasiswa.result[index].nim);
         alert(dbMahasiswa.result[index].nim + " sudah dihapus");
-        
+        console.log(dbMahasiswa.result[index].nim + " sudah dihapus");
+        console.log(dbMahasiswa.result);
+        header();
         for(var i=0; i<dbMahasiswa.result.length; i++){
             tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
         }
     }
 }
 
+function header(){
+    var hasilTabel = document.getElementById("hasilTabel");
+    hasilTabel.innerHTML = "";
+    var trHeader = document.createElement("tr"),
+        thNama = document.createElement("th"),
+        thNim = document.createElement("th"),
+        thProdi = document.createElement("th"),
+        thEmail = document.createElement("th");
+
+    thNama.textContent = "Nama";
+    trHeader.appendChild(thNama);
+    thNim.textContent = "Nim";
+    trHeader.appendChild(thNim);
+    thProdi.textContent = "Prodi";
+    trHeader.appendChild(thProdi);
+    thEmail.textContent = "Email";
+    trHeader.appendChild(thEmail);
+
+    hasilTabel.appendChild(trHeader);
+}
+
 // SUBMIT TANPA ADA YANG TERULANG!!!
 function tampilkanData(index, nama, nim, prodi, email){
-    // var table = document.getElementById("hasil");
-    // table.innerHTML = "<table id=\"hasilTabel\">" +
-    //                 "<tr>" + 
-    //                     "<th class=\"nama\">Nama</th>" +
-    //                     "<th class=\"nim\">NIM</th>" +
-    //                     "<th class=\"prodi\">Prodi</th>" +
-    //                     "<th class=\"email\">Email</th>" +
-    //                 "</tr></table>";
-
     var hasilTabel = document.getElementById("hasilTabel");
     
-    // var trHeader = document.createElement("tr"),
-    //     thNama = document.createElement("th"),
-    //     thNim = document.createElement("th"),
-    //     thProdi = document.createElement("th"),
-    //     thEmail = document.createElement("th");
-
-    // thNama.textContent = "Nama";
-    // trHeader.appendChild(thNama);
-    // thNim.textContent = "Nim";
-    // trHeader.appendChild(thNim);
-    // thProdi.textContent = "Prodi";
-    // trHeader.appendChild(thProdi);
-    // thEmail.textContent = "Email";
-    // trHeader.appendChild(thEmail);
-
-    // hasilTabel.appendChild(trHeader);
-
-    // var cellNama = "<td class=\"nama\">" + nama + "</td>",
-    //     cellNim = "<td class=\"nim\">" + nim + "</td>",
-    //     cellProdi = "<td class=\"prodi\">" + prodi + "</td>",
-    //     cellEmail = "<td class=\"email\">" + email + "</td>",
-    //     cellHapus = "<td class=\"hapus\"><input type=\"button\" id=\"" + index + "\" onclick=hapusData(" + index + ") value=\"Hapus\"/></td>";
-
     var trData = document.createElement("tr"),
         tdNama = document.createElement("td"),
         tdNim = document.createElement("td"),
