@@ -88,7 +88,7 @@ function addData() {
             console.log("ERROR: " + event.target.errorCode);
         };
 
-        store.put(dataMahasiswa[dataMahasiswa.length - 1]);
+        // store.put(dataMahaysiswa[dataMahasiswa.length - 1]);
         var dbMahasiswa = store.getAll();
         
         dbMahasiswa.onsuccess = function(){
@@ -110,6 +110,10 @@ function hapusData(index){
     dbMahasiswa.onsuccess = function(){
         delDb = store.delete(dbMahasiswa.result[index].nim);
         alert(dbMahasiswa.result[index].nim + " sudah dihapus");
+        
+        for(var i=0; i<dbMahasiswa.result.length; i++){
+            tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
+        }
     }
 }
 
@@ -125,13 +129,60 @@ function tampilkanData(index, nama, nim, prodi, email){
     //                 "</tr></table>";
 
     var hasilTabel = document.getElementById("hasilTabel");
-    var cellNama = "<td class=\"nama\">" + nama + "</td>",
-        cellNim = "<td class=\"nim\">" + nim + "</td>",
-        cellProdi = "<td class=\"prodi\">" + prodi + "</td>",
-        cellEmail = "<td class=\"email\">" + email + "</td>",
-        cellHapus = "<td class=\"hapus\"><input type=\"button\" id=\"" + index + "\" onclick=hapusData(" + index + ") value=\"Hapus\"/></td>";
+    
+    // var trHeader = document.createElement("tr"),
+    //     thNama = document.createElement("th"),
+    //     thNim = document.createElement("th"),
+    //     thProdi = document.createElement("th"),
+    //     thEmail = document.createElement("th");
 
-    hasilTabel.innerHTML += "<tr>" + cellNama + cellNim + cellProdi + cellEmail + cellHapus + "</tr>";
+    // thNama.textContent = "Nama";
+    // trHeader.appendChild(thNama);
+    // thNim.textContent = "Nim";
+    // trHeader.appendChild(thNim);
+    // thProdi.textContent = "Prodi";
+    // trHeader.appendChild(thProdi);
+    // thEmail.textContent = "Email";
+    // trHeader.appendChild(thEmail);
+
+    // hasilTabel.appendChild(trHeader);
+
+    // var cellNama = "<td class=\"nama\">" + nama + "</td>",
+    //     cellNim = "<td class=\"nim\">" + nim + "</td>",
+    //     cellProdi = "<td class=\"prodi\">" + prodi + "</td>",
+    //     cellEmail = "<td class=\"email\">" + email + "</td>",
+    //     cellHapus = "<td class=\"hapus\"><input type=\"button\" id=\"" + index + "\" onclick=hapusData(" + index + ") value=\"Hapus\"/></td>";
+
+    var trData = document.createElement("tr"),
+        tdNama = document.createElement("td"),
+        tdNim = document.createElement("td"),
+        tdProdi = document.createElement("td"),
+        tdEmail = document.createElement("td"),
+        tdHapus = document.createElement("td"),
+        hapusBtn = document.createElement("input");
+    
+    tdHapus.className = "hapus";
+    hapusBtn.type = "button"
+    hapusBtn.id = "index";
+    // hapusBtn.onclick = "hapusData(index)";
+    hapusBtn.addEventListener("click", function(){
+        hapusData(index);
+    });
+    hapusBtn.value = "Hapus";
+
+    tdNama.textContent = nama;
+    trData.appendChild(tdNama);
+    tdNim.textContent = nim;
+    trData.appendChild(tdNim);
+    tdProdi.textContent = prodi;
+    trData.appendChild(tdProdi);
+    tdEmail.textContent = email;
+    trData.appendChild(tdEmail);
+    tdHapus.appendChild(hapusBtn);
+    trData.appendChild(tdHapus);
+    
+    hasilTabel.appendChild(trData);
+    // hasilTabel.innerHTML += "<tr>" + cellNama + cellNim + cellProdi + cellEmail + cellHapus + "</tr>";
 }
 
 function validateForm(nama, nim, prodi, email){
