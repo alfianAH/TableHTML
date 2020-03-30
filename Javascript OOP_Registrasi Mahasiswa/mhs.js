@@ -54,9 +54,9 @@ function setData(){
 
     if(validateForm(nama, nim, prodi, email)){
         var data = new Data(nama, nim, prodi, email);
-        dataMahasiswa.push({nama: nama, nim: nim, prodi: prodi, email: email});
+        dataMahasiswa.push({nama: nama, nim: nim, prodi: prodi, email: email, timestamp: new Date().getTime()});
         console.log(dataMahasiswa);
-        
+        addData();
     }
 }
 
@@ -82,19 +82,19 @@ function addData() {
         transaction = db.transaction("dataMahasiswa", "readwrite");
         store = transaction.objectStore("dataMahasiswa");
         index = store.index("nama");
-        dataMahasiswa.push(store.getAll());
+        // dataMahasiswa.push(store.getAll());
 
         db.onerror = function(event){
             console.log("ERROR: " + event.target.errorCode);
         };
 
-        // store.put(dataMahasiswa[dataMahasiswa.length - 1]);
+        store.put(dataMahasiswa[dataMahasiswa.length - 1]);
         var dbMahasiswa = store.getAll();
         
         dbMahasiswa.onsuccess = function(){
             console.log(dbMahasiswa.result);
             for(var i=0; i<dbMahasiswa.result.length; i++){
-                tampilkanData(dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
+                tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
             }
         };
     };
@@ -104,7 +104,7 @@ function hapusData(index){
     db = request.result;
     transaction = db.transaction("dataMahasiswa", "readwrite");
     store = transaction.objectStore("dataMahasiswa");
-    var delDb;
+    // var delDb;
     var dbMahasiswa = store.getAll();
 
     dbMahasiswa.onsuccess = function(){
@@ -112,8 +112,9 @@ function hapusData(index){
         alert(dbMahasiswa.result[index].nim + " sudah dihapus");
     }
 }
+
 // SUBMIT TANPA ADA YANG TERULANG!!!
-function tampilkanData(nama, nim, prodi, email){
+function tampilkanData(index, nama, nim, prodi, email){
     // var table = document.getElementById("hasil");
     // table.innerHTML = "<table id=\"hasilTabel\">" +
     //                 "<tr>" + 
@@ -128,7 +129,7 @@ function tampilkanData(nama, nim, prodi, email){
         cellNim = "<td class=\"nim\">" + nim + "</td>",
         cellProdi = "<td class=\"prodi\">" + prodi + "</td>",
         cellEmail = "<td class=\"email\">" + email + "</td>",
-        cellHapus = "<td class=\"hapus\"><input type=\"button\" value=\"Hapus\" onclick=\"hapusData()\"/></td>";
+        cellHapus = "<td class=\"hapus\"><input type=\"button\" id=\"" + index + "\" onclick=hapusData(" + index + ") value=\"Hapus\"/></td>";
 
     hasilTabel.innerHTML += "<tr>" + cellNama + cellNim + cellProdi + cellEmail + cellHapus + "</tr>";
 }
