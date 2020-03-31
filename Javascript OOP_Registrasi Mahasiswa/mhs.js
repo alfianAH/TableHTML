@@ -21,6 +21,7 @@ var request,
     index;
 
 const dataMahasiswa = [];
+init();
 
 class Data {
     constructor(nama, nim, prodi, email) {
@@ -105,10 +106,8 @@ function hapusData(index){
     db = request.result;
     transaction = db.transaction("dataMahasiswa", "readwrite");
     store = transaction.objectStore("dataMahasiswa");
-    // console.log(store);
     // var delDb;
     var dbMahasiswa = store.getAll();
-    // console.log(dbMahasiswa);
 
     dbMahasiswa.onsuccess = function(event){
         delDb = store.delete(dbMahasiswa.result[index].nim);
@@ -119,6 +118,34 @@ function hapusData(index){
             tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
         }
     }
+}
+
+function init(){
+    request = window.indexedDB.open("database", 1); 
+
+    request.onupgradeneeded = function(event){
+        var db = request.result,
+            store = db.createObjectStore("dataMahasiswa"),
+            index = store.createIndex("nama", "nama", {unique: false});
+    };
+
+    request.onerror = function(event){
+        console.log("Error: " + event.target.errorCode);
+    };
+
+    request.onsuccess = function(event){
+        db = request.result;
+        transaction = db.transaction("dataMahasiswa", "readwrite");
+        store = transaction.objectStore("dataMahasiswa");
+        var dbMahasiswa = store.getAll();
+
+        dbMahasiswa.onsuccess = function(event){
+            header();
+            for(var i=0; i<dbMahasiswa.result.length; i++){
+                tampilkanData(i, dbMahasiswa.result[i].nama, dbMahasiswa.result[i].nim, dbMahasiswa.result[i].prodi, dbMahasiswa.result[i].email);
+            }
+        }
+    };
 }
 
 function header(){
@@ -142,7 +169,6 @@ function header(){
     hasilTabel.appendChild(trHeader);
 }
 
-// SUBMIT TANPA ADA YANG TERULANG!!!
 function tampilkanData(index, nama, nim, prodi, email){
     var hasilTabel = document.getElementById("hasilTabel");
     
@@ -175,7 +201,6 @@ function tampilkanData(index, nama, nim, prodi, email){
     trData.appendChild(tdHapus);
     
     hasilTabel.appendChild(trData);
-    // hasilTabel.innerHTML += "<tr>" + cellNama + cellNim + cellProdi + cellEmail + cellHapus + "</tr>";
 }
 
 function validateForm(nama, nim, prodi, email){
@@ -185,8 +210,4 @@ function validateForm(nama, nim, prodi, email){
     } else{
         return true;
     }
-}
-
-function init(){
-    
 }
